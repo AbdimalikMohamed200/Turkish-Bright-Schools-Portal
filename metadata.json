@@ -1,0 +1,7 @@
+{
+  "name": "Turkish Bright Schools",
+  "description": "Official portal for Turkish Bright Schools in Mogadishu, Somalia, featuring academic programs, curriculum details, admissions enrollment, and campus information.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
