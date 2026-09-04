@@ -36,14 +36,14 @@ export const CurriculumModal: React.FC<CurriculumModalProps> = ({
 
           <div className="inline-flex items-center gap-2 bg-secondary/80 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">
             <BookOpen className="w-3.5 h-3.5 text-tertiary-fixed" />
-            <span>Academic Curriculum & Standards</span>
+            <span>Learning Areas & Placement</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold font-h3 text-white">
-            Curriculum & Learning Framework
+            Learning Framework
           </h2>
           <p className="text-xs sm:text-sm text-primary-fixed-dim mt-1">
-            Bridging international Cambridge & Turkish rigor with Somali culture
+            Academic learning, Quranic education, and student development
           </p>
 
           {/* Program Tabs */}
@@ -78,12 +78,14 @@ export const CurriculumModal: React.FC<CurriculumModalProps> = ({
                 {currentProgram.name} Academic Track
               </h3>
             </div>
-            <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-outline-variant/40 shrink-0">
-              <Clock className="w-4 h-4 text-secondary" />
-              <span className="text-xs sm:text-sm font-bold text-primary">
-                {currentProgram.weeklyHours} Academic Periods / Wk
-              </span>
-            </div>
+            {currentProgram.weeklyHours > 0 && (
+              <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-outline-variant/40 shrink-0">
+                <Clock className="w-4 h-4 text-secondary" />
+                <span className="text-xs sm:text-sm font-bold text-primary">
+                  {currentProgram.weeklyHours} Academic Periods / Wk
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Overview description */}
@@ -121,7 +123,7 @@ export const CurriculumModal: React.FC<CurriculumModalProps> = ({
             <div className="flex items-center gap-2 mb-3">
               <Languages className="w-4 h-4 text-secondary" />
               <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider">
-                Quad-Lingual Framework
+                Learning Focus
               </h4>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -144,7 +146,7 @@ export const CurriculumModal: React.FC<CurriculumModalProps> = ({
           {/* Key Advantages */}
           <div>
             <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-3">
-              Program Highlights & Laboratory Work
+              Programme Highlights
             </h4>
             <ul className="flex flex-col gap-2">
               {currentProgram.keyFeatures.map((feat, idx) => (
@@ -160,7 +162,7 @@ export const CurriculumModal: React.FC<CurriculumModalProps> = ({
         {/* Modal Footer CTA */}
         <div className="p-4 sm:p-6 bg-surface-container-low border-t border-outline-variant/40 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           <span className="text-xs text-on-surface-variant text-center sm:text-left">
-            Limited seats available for the upcoming term. Early registration is recommended.
+            Contact admissions for current programme and placement information.
           </span>
           <div className="flex items-center gap-2.5 w-full sm:w-auto">
             <button

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { BookOpen, Phone, ArrowRight, MapPin } from 'lucide-react';
 
 interface CtaSectionProps {
   onStartEnrollment: () => void;
@@ -8,10 +8,6 @@ interface CtaSectionProps {
 export const CtaSection: React.FC<CtaSectionProps> = ({ onStartEnrollment }) => {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-primary text-center flex flex-col items-center justify-center gap-6 relative overflow-hidden">
-      {/* Decorative background ambient glows */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-secondary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-tertiary-fixed/15 rounded-full blur-3xl pointer-events-none" />
-
       {/* Center Icon */}
       <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner">
         <BookOpen className="w-9 h-9 text-tertiary-fixed" />
@@ -19,12 +15,12 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onStartEnrollment }) => 
 
       {/* Heading */}
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-on-primary font-h2 tracking-tight max-w-2xl">
-        Ready to Shape Their Future?
+        Start with the right information
       </h2>
 
       {/* Subtitle */}
       <p className="text-base sm:text-lg text-primary-fixed-dim max-w-md mx-auto leading-relaxed">
-        Admissions are now open for the upcoming academic year. Secure a spot for your child today.
+        Contact Turkish Bright Schools to confirm current admissions, programme availability, school hours, and the nearest Mogadishu location.
       </p>
 
       {/* Action Button */}
@@ -42,12 +38,12 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onStartEnrollment }) => 
       {/* Trust micro-badges */}
       <div className="flex flex-wrap items-center justify-center gap-6 mt-4 text-xs font-medium text-primary-fixed-dim">
         <div className="flex items-center gap-1.5">
-          <ShieldCheck className="w-4 h-4 text-secondary-fixed" />
-          <span>Transparent Entrance Assessments</span>
+          <MapPin className="w-4 h-4 text-secondary-fixed" />
+          <span>Hodan and Daarusalaam locations</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-tertiary-fixed" />
-          <span>Merit Scholarships Available</span>
+          <Phone className="w-4 h-4 text-tertiary-fixed" />
+          <span>Call or WhatsApp admissions</span>
         </div>
       </div>
     </section>

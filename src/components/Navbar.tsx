@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { School, Menu, X, ArrowRight, Phone, MapPin, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone, MapPin, Sparkles } from 'lucide-react';
+import { SCHOOL_LOGO, SCHOOL_PHONE_PRIMARY } from '../data/schoolData';
 
 interface NavbarProps {
   onOpenAdmissions: () => void;
@@ -35,8 +36,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-xs group-hover:bg-primary-container transition-colors">
-              <School className="w-6 h-6 text-tertiary-fixed" />
+            <div className="w-10 h-10 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-xs border border-outline-variant/40 group-hover:border-secondary transition-colors overflow-hidden">
+              <img src={SCHOOL_LOGO} alt="Turkish Bright Schools logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg md:text-xl text-primary leading-tight tracking-tight">
@@ -132,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => scrollToSection('programs-section')}
                 className="text-left py-2.5 px-3 rounded-lg hover:bg-surface-container-low text-primary flex items-center justify-between"
               >
-                <span>Academic Programs (KG - Grade 12)</span>
+                <span>Academic Programs</span>
                 <ArrowRight className="w-4 h-4 text-outline" />
               </button>
               <button
@@ -151,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => scrollToSection('facilities-section')}
                 className="text-left py-2.5 px-3 rounded-lg hover:bg-surface-container-low text-primary flex items-center justify-between"
               >
-                <span>Modern Facilities & Laboratories</span>
+                <span>Learning & Activities</span>
                 <ArrowRight className="w-4 h-4 text-outline" />
               </button>
               <button
@@ -161,14 +162,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 className="text-left py-2.5 px-3 rounded-lg hover:bg-surface-container-low text-primary flex items-center justify-between"
               >
-                <span>Our Heritage & Leadership</span>
+                <span>About the School</span>
                 <ArrowRight className="w-4 h-4 text-outline" />
               </button>
               <button
                 onClick={() => scrollToSection('contact-section')}
                 className="text-left py-2.5 px-3 rounded-lg hover:bg-surface-container-low text-primary flex items-center justify-between"
               >
-                <span>Campuses (Hodan & Wadajir)</span>
+                <span>Locations (Hodan & Daarusalaam)</span>
                 <MapPin className="w-4 h-4 text-outline" />
               </button>
             </div>
@@ -188,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="flex items-center justify-between px-2 text-xs text-on-surface-variant">
                 <span className="flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-secondary" />
-                  +252 61 700 1122
+                  {SCHOOL_PHONE_PRIMARY}
                 </span>
                 <span className="text-secondary font-medium">Mogadishu, Somalia</span>
               </div>

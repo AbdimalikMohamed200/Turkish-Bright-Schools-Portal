@@ -36,7 +36,7 @@ export interface EnrollmentFormData {
   parentPhone: string;
   parentEmail: string;
   district: string;
-  campusPreference: 'hodan' | 'wadajir';
+  campusPreference: 'hodan' | 'daarusalaam';
   requestedTour: boolean;
   notes: string;
 }

@@ -27,7 +27,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
     parentEmail: '',
     district: 'Hodan',
     campusPreference: 'hodan',
-    requestedTour: true,
+    requestedTour: false,
     notes: '',
   });
 
@@ -46,7 +46,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
       ...formData,
       programLevel: level,
       targetGrade: defaultGrade,
-      campusPreference: level === 'high_school' ? 'hodan' : 'wadajir',
+      campusPreference: level === 'high_school' ? 'hodan' : 'daarusalaam',
     });
   };
 
@@ -62,7 +62,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
     const message = encodeURIComponent(
       `Hello Turkish Bright Schools Mogadishu. I submitted an admission application for ${formData.studentFirstName} ${formData.studentLastName} (${formData.targetGrade}). Reference ID: ${applicationId}. Please guide me on the next entrance assessment steps.`
     );
-    window.open(`https://wa.me/252617001122?text=${message}`, '_blank');
+    window.open(`https://wa.me/252610757575?text=${message}`, '_blank');
   };
 
   return (
@@ -80,14 +80,14 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
 
           <div className="inline-flex items-center gap-2 bg-secondary/80 text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">
             <Sparkles className="w-3.5 h-3.5 text-tertiary-fixed" />
-            <span>Academic Year 2025 - 2026 Admissions</span>
+            <span>Admissions & Placement</span>
           </div>
 
           <h2 className="text-2xl font-bold font-h3 text-white">
             Student Enrollment Application
           </h2>
           <p className="text-xs sm:text-sm text-primary-fixed-dim mt-1">
-            Secure a placement at Turkish Bright Schools Mogadishu campuses
+            Ask about current placement at Turkish Bright Schools Mogadishu locations
           </p>
 
           {/* Stepper (Steps 1-3) */}
@@ -251,7 +251,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                       <option value="Grade 9">Grade 9 (Freshman Academy)</option>
                       <option value="Grade 10">Grade 10 (Sophomore)</option>
                       <option value="Grade 11">Grade 11 (Pre-University / STEM Track)</option>
-                      <option value="Grade 12">Grade 12 (Senior / YÖS Preparation)</option>
+                      <option value="Grade 12">Grade 12 (Confirm with admissions)</option>
                     </>
                   )}
                 </select>
@@ -352,7 +352,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                     className="w-full px-4 py-2.5 rounded-xl border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm bg-white"
                   >
                     <option value="Hodan">Hodan District</option>
-                    <option value="Wadajir">Wadajir / Medina</option>
+                    <option value="Daarusalaam">Daarusalaam</option>
                     <option value="Hamar Weyne">Hamar Weyne</option>
                     <option value="Hawl Wadag">Hawl Wadag</option>
                     <option value="Waberi">Waberi District</option>
@@ -373,7 +373,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                     className="w-full px-4 py-2.5 rounded-xl border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm bg-white"
                   >
                     <option value="hodan">Hodan Main Campus (Digfeer Road)</option>
-                    <option value="wadajir">Wadajir Campus (Airport / Medina)</option>
+                    <option value="daarusalaam">Daarusalaam location (near Buruuji)</option>
                   </select>
                 </div>
               </div>
@@ -387,7 +387,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                   className="w-4 h-4 rounded text-secondary focus:ring-secondary"
                 />
                 <label htmlFor="tour-check" className="text-xs sm:text-sm font-semibold text-primary cursor-pointer">
-                  Yes, schedule an guided on-campus tour for our family this Saturday.
+                  Please contact me about visiting the most convenient school location.
                 </label>
               </div>
 
@@ -444,7 +444,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                 </div>
                 <div className="flex justify-between">
                   <span className="text-on-surface-variant font-medium">Campus & District:</span>
-                  <span className="font-semibold text-primary">{formData.campusPreference === 'hodan' ? 'Hodan Campus' : 'Wadajir Campus'} ({formData.district})</span>
+                  <span className="font-semibold text-primary">{formData.campusPreference === 'hodan' ? 'Hodan location' : 'Daarusalaam location'} ({formData.district})</span>
                 </div>
               </div>
 
@@ -454,7 +454,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="Mention any health notes, scholarship inquiries, or siblings already enrolled..."
+                  placeholder="Mention any health notes, placement questions, or siblings already enrolled..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm bg-white"
@@ -519,7 +519,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                 <div className="flex justify-between items-center text-xs text-on-surface-variant">
                   <span>Assigned Campus</span>
                   <span className="font-semibold text-primary">
-                    {formData.campusPreference === 'hodan' ? 'Hodan Main Campus' : 'Wadajir Campus'}
+                    {formData.campusPreference === 'hodan' ? 'Hodan location' : 'Daarusalaam location'}
                   </span>
                 </div>
               </div>

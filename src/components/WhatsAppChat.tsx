@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { X, Send, Sparkles, PhoneCall, Check } from 'lucide-react';
+import { SCHOOL_PHONE_PRIMARY } from '../data/schoolData';
 
 export const WhatsAppChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [customMsg, setCustomMsg] = useState('');
 
-  const phone = '252617001122';
+  const phone = SCHOOL_PHONE_PRIMARY.replace(/\D/g, '');
 
   const quickPrompts = [
-    'I want to inquire about High School admission for my child.',
-    'Could you share the tuition fee structure and scholarship details?',
-    'I would like to book a campus tour at Hodan Campus.',
-    'What are the age requirements for Kindergarten enrollment?',
+    'I want to ask about current student admissions.',
+    'Could you share the available programmes and grade requirements?',
+    'I would like to confirm the nearest Hodan or Daarusalaam location.',
+    'Could you share the current school hours and intake details?',
   ];
 
   const handleSend = (text: string) => {
@@ -51,7 +52,7 @@ export const WhatsAppChat: React.FC = () => {
           <div className="p-4 bg-[#ECE5DD] max-h-72 overflow-y-auto flex flex-col gap-3">
             <div className="bg-white p-3 rounded-xl rounded-tl-none text-xs text-[#111] shadow-xs max-w-[90%] leading-relaxed">
               <p className="font-medium">
-                Asc / Hello! 👋 Welcome to Turkish Bright Schools Mogadishu. How can we help you regarding our academic programs or enrollment today?
+                Asc / Hello! Welcome to Turkish Bright Schools Mogadishu. How can we help you with admissions, locations, or learning programmes today?
               </p>
               <span className="text-[10px] text-gray-400 block text-right mt-1">Just now</span>
             </div>

@@ -7,24 +7,24 @@
   --font-h4: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  --color-primary: #00346f;
-  --color-primary-container: #004a99;
-  --color-primary-fixed: #d7e2ff;
-  --color-primary-fixed-dim: #abc7ff;
+  --color-primary: #102b57;
+  --color-primary-container: #1d4677;
+  --color-primary-fixed: #dce8ff;
+  --color-primary-fixed-dim: #b4c9e8;
   --color-on-primary: #ffffff;
   --color-on-primary-fixed: #001b3f;
 
-  --color-secondary: #006970;
-  --color-secondary-container: #7af1fc;
-  --color-secondary-fixed: #7df4ff;
-  --color-secondary-fixed-dim: #5dd8e2;
+  --color-secondary: #d92535;
+  --color-secondary-container: #ffc8cd;
+  --color-secondary-fixed: #ffdadf;
+  --color-secondary-fixed-dim: #ffb2bb;
   --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #006e75;
+  --color-on-secondary-container: #8b1020;
 
-  --color-tertiary: #735c00;
-  --color-tertiary-container: #cca72f;
-  --color-tertiary-fixed: #ffe088;
-  --color-tertiary-fixed-dim: #e9c349;
+  --color-tertiary: #805c00;
+  --color-tertiary-container: #d89f18;
+  --color-tertiary-fixed: #f6c23e;
+  --color-tertiary-fixed-dim: #e2a817;
   --color-on-tertiary-fixed: #241a00;
 
   --color-surface: #f8f9ff;

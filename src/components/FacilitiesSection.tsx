@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlaskConical, BookOpen, MonitorPlay, Trophy, CheckCircle2 } from 'lucide-react';
+import { FlaskConical, BookOpen, MonitorPlay, Trophy, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 import { FACILITIES } from '../data/schoolData';
 
 interface FacilitiesSectionProps {
@@ -13,6 +13,10 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ onOpenAdmi
         return <FlaskConical className="w-6 h-6 text-secondary" />;
       case 'BookOpen':
         return <BookOpen className="w-6 h-6 text-secondary" />;
+      case 'ShieldCheck':
+        return <ShieldCheck className="w-6 h-6 text-secondary" />;
+      case 'Sparkles':
+        return <Sparkles className="w-6 h-6 text-secondary" />;
       case 'MonitorPlay':
         return <MonitorPlay className="w-6 h-6 text-secondary" />;
       case 'Trophy':
@@ -27,14 +31,14 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ onOpenAdmi
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-secondary font-bold text-xs uppercase tracking-widest bg-secondary/10 px-3 py-1 rounded-full mb-2">
-              <span>World-Class Campus Infrastructure</span>
+              <span>School Life & Values</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary font-h3">
-              Designed for Exploration & Safety
+              Learning beyond the classroom
             </h2>
           </div>
           <p className="text-sm sm:text-base text-on-surface-variant max-w-md">
-            Our Mogadishu campuses feature international security standards, constant solar-backed electricity, dedicated cafeteria services, and high-speed research connectivity.
+            Turkish Bright Schools describes a balanced school experience built around academic learning, Quranic education, Islamic manners, creativity, and student confidence.
           </p>
         </div>
 
@@ -61,7 +65,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ onOpenAdmi
 
               <div className="pt-4 mt-4 border-t border-outline-variant/30 flex items-center gap-2 text-xs text-primary font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-secondary" />
-                <span>Available across both campuses</span>
+                <span>Reflected in the school updates</span>
               </div>
             </div>
           ))}
@@ -71,13 +75,13 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ onOpenAdmi
         <div className="mt-8 bg-gradient-to-r from-primary to-primary-container text-white p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
           <div className="flex flex-col gap-2 text-center sm:text-left">
             <span className="text-tertiary-fixed font-bold text-xs uppercase tracking-widest">
-              Campus Visit & Guidance
+              Visit & Admissions
             </span>
             <h3 className="text-xl sm:text-2xl font-bold font-h3">
-              Experience Turkish Bright Schools in Person
+              Find the right location for your family
             </h3>
             <p className="text-primary-fixed-dim text-sm max-w-xl">
-              Tours are hosted every Saturday and Wednesday at our Hodan and Wadajir campuses. Meet the principals and see the laboratories.
+              Contact the school to confirm the current intake, programme details, and the location most convenient for you.
             </p>
           </div>
 
@@ -85,7 +89,7 @@ export const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ onOpenAdmi
             onClick={onOpenAdmissions}
             className="shrink-0 bg-tertiary-fixed text-on-tertiary-fixed font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl hover:bg-tertiary-fixed-dim active:scale-95 transition-all shadow-md cursor-pointer"
           >
-            Book a Campus Tour
+            Contact the School
           </button>
         </div>
       </div>
