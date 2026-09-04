@@ -33,14 +33,17 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
 
   const [applicationId, setApplicationId] = useState('');
   const [submittedTime, setSubmittedTime] = useState('');
+  const todayInputValue = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+    .toISOString()
+    .split('T')[0];
 
   if (!isOpen) return null;
 
   const handleLevelChange = (level: 'kindergarten' | 'primary' | 'high_school') => {
     let defaultGrade = 'Grade 1';
-    if (level === 'kindergarten') defaultGrade = 'KG 1 (Age 3-4)';
+    if (level === 'kindergarten') defaultGrade = 'Placement on request';
     if (level === 'primary') defaultGrade = 'Grade 1';
-    if (level === 'high_school') defaultGrade = 'Grade 9';
+    if (level === 'high_school') defaultGrade = 'Confirm with admissions';
 
     setFormData({
       ...formData,
@@ -52,7 +55,23 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const refId = `TBS-${Math.floor(1000 + Math.random() * 9000)}-${new Date().getFullYear()}`;
+    const refId = `TBS-INQ-${Math.floor(1000 + Math.random() * 9000)}-${new Date().getFullYear()}`;
+    const message = encodeURIComponent(
+      [
+        'Hello Turkish Bright Schools admissions.',
+        `Inquiry reference: ${refId}`,
+        `Student: ${formData.studentFirstName} ${formData.studentLastName}`,
+        `Date of birth: ${formData.dateOfBirth}`,
+        `Programme: ${formData.programLevel}`,
+        `Grade: ${formData.targetGrade}`,
+        `Guardian: ${formData.parentFullName}`,
+        `Guardian phone: ${formData.parentPhone}`,
+        `District: ${formData.district}`,
+        `Preferred location: ${formData.campusPreference === 'hodan' ? 'Hodan' : 'Daarusalaam'}`,
+        formData.notes ? `Notes: ${formData.notes}` : '',
+      ].filter(Boolean).join('\n')
+    );
+    window.open(`https://wa.me/252610757575?text=${message}`, '_blank');
     setApplicationId(refId);
     setSubmittedTime(new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
     setStep(4);
@@ -60,9 +79,25 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
 
   const handleWhatsAppNotify = () => {
     const message = encodeURIComponent(
-      `Hello Turkish Bright Schools Mogadishu. I submitted an admission application for ${formData.studentFirstName} ${formData.studentLastName} (${formData.targetGrade}). Reference ID: ${applicationId}. Please guide me on the next entrance assessment steps.`
+      `Hello Turkish Bright Schools admissions. Inquiry reference: ${applicationId}. Student: ${formData.studentFirstName} ${formData.studentLastName}. Grade: ${formData.targetGrade}. Guardian phone: ${formData.parentPhone}. Please guide me on the next steps.`
     );
     window.open(`https://wa.me/252610757575?text=${message}`, '_blank');
+  };
+
+  const validateStudentDetails = () => {
+    if (!formData.studentFirstName || !formData.studentLastName) {
+      alert('Please enter student first and last name');
+      return false;
+    }
+    if (!formData.dateOfBirth) {
+      alert('Please enter the student date of birth');
+      return false;
+    }
+    if (formData.dateOfBirth > todayInputValue) {
+      alert('Date of birth cannot be in the future');
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -155,6 +190,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                   <input
                     type="date"
                     required
+                    max={todayInputValue}
                     value={formData.dateOfBirth}
                     onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none text-sm bg-white"
@@ -190,7 +226,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                         : 'border-outline-variant bg-white text-on-surface hover:bg-surface-container-low'
                     }`}
                   >
-                    Kindergarten
+                    Early Learning
                   </button>
                   <button
                     type="button"
@@ -201,7 +237,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                         : 'border-outline-variant bg-white text-on-surface hover:bg-surface-container-low'
                     }`}
                   >
-                    Primary School
+                    Primary & Middle School
                   </button>
                   <button
                     type="button"
@@ -212,7 +248,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                         : 'border-outline-variant bg-white text-on-surface hover:bg-surface-container-low'
                     }`}
                   >
-                    High School
+                    Secondary Placement
                   </button>
                 </div>
               </div>
@@ -229,9 +265,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                 >
                   {formData.programLevel === 'kindergarten' && (
                     <>
-                      <option value="Pre-K (Age 3)">Pre-K (Age 3)</option>
-                      <option value="KG 1 (Age 4)">KG 1 (Age 4)</option>
-                      <option value="KG 2 (Age 5)">KG 2 (Age 5)</option>
+                      <option value="Placement on request">Placement on request</option>
                     </>
                   )}
                   {formData.programLevel === 'primary' && (
@@ -248,10 +282,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                   )}
                   {formData.programLevel === 'high_school' && (
                     <>
-                      <option value="Grade 9">Grade 9 (Freshman Academy)</option>
-                      <option value="Grade 10">Grade 10 (Sophomore)</option>
-                      <option value="Grade 11">Grade 11 (Pre-University / STEM Track)</option>
-                      <option value="Grade 12">Grade 12 (Confirm with admissions)</option>
+                      <option value="Confirm with admissions">Confirm with admissions</option>
                     </>
                   )}
                 </select>
@@ -274,11 +305,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    if (!formData.studentFirstName || !formData.studentLastName) {
-                      alert('Please enter student first and last name');
-                      return;
-                    }
-                    setStep(2);
+                    if (validateStudentDetails()) setStep(2);
                   }}
                   className="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary-container active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
                 >
@@ -422,7 +449,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
             <div className="flex flex-col gap-4">
               <h3 className="font-bold text-lg text-primary flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-secondary" />
-                <span>Confirm & Submit Application</span>
+                <span>Confirm & Send Inquiry</span>
               </h3>
 
               <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/60 flex flex-col gap-3 text-sm">
@@ -462,7 +489,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
               </div>
 
               <div className="p-3 bg-secondary/10 border border-secondary/20 rounded-xl text-xs text-secondary leading-relaxed">
-                <strong>Next Step Notice:</strong> Upon submission, our admissions team will review your application and send you a confirmation SMS/WhatsApp message with your scheduled entrance assessment date and document submission checklist.
+                <strong>Next Step Notice:</strong> Your details will open in WhatsApp. Send the prepared message so the admissions team can confirm availability and guide you about the next steps.
               </div>
 
               <div className="pt-4 flex justify-between">
@@ -480,7 +507,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                   className="px-8 py-3.5 bg-tertiary-fixed text-on-tertiary-fixed font-bold rounded-xl hover:bg-tertiary-fixed-dim active:scale-95 transition-all shadow-md flex items-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>Submit Enrollment</span>
+                  <span>Send Details to WhatsApp</span>
                 </button>
               </div>
             </div>
@@ -493,21 +520,21 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
               </div>
 
               <span className="text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-3 py-1 rounded-full">
-                Application Received Successfully
+                WhatsApp Inquiry Prepared
               </span>
 
               <h3 className="text-2xl font-bold text-primary font-h3">
-                Welcome to the TBS Family!
+                Continue in WhatsApp
               </h3>
 
               <p className="text-sm text-on-surface-variant max-w-md">
-                We have registered the admission file for <strong className="text-primary">{formData.studentFirstName} {formData.studentLastName}</strong> for <strong className="text-primary">{formData.targetGrade}</strong>.
+                Your admission details are ready to send to Turkish Bright Schools. WhatsApp will open so the admissions team can confirm availability and the next steps.
               </p>
 
               {/* Reference Card */}
               <div className="w-full bg-surface-container-low border border-outline-variant/60 rounded-xl p-4 my-2 text-left flex flex-col gap-2">
                 <div className="flex justify-between items-center text-xs text-on-surface-variant">
-                  <span>Application Reference Number</span>
+                  <span>Inquiry Reference</span>
                   <span className="font-mono bg-white px-2 py-0.5 rounded border border-outline-variant font-bold text-primary">
                     {applicationId}
                   </span>
@@ -532,7 +559,7 @@ export const AdmissionsModal: React.FC<AdmissionsModalProps> = ({
                   className="flex-1 bg-[#25D366] text-white font-bold py-3 px-4 rounded-xl hover:bg-[#20b858] transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Connect with Admissions on WhatsApp</span>
+                  <span>Send Details on WhatsApp</span>
                 </button>
 
                 <button
